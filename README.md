@@ -13,11 +13,19 @@ TODO
 
 ## Similar Projects, Articles, Sources
 
-TODO 
+1. Higgins, McDowell, and Milne. _Modeling and Predicting Football Results_. Wolfram Community, 2015. http://community.wolfram.com/groups/-/m/t/517631
+2. Etienne Bernard. _Predicting Who Will Win the World Cup with Wolfram Language_. Wolfram Blog, June 20, 2014. http://blog.wolfram.com/2014/06/20/predicting-who-will-win-the-world-cup-with-wolfram-language/
+3. Hatzius, Stehn, and Millar. _The Econometrician’s Take on Euro 2016_. Goldman Sachs - Our Thinking - Macroeconomic Insights, originally published June 3, 2016. http://www.goldmansachs.com/our-thinking/macroeconomic-insights/euro-cup-2016/index.html
 
-## Ideas for Improvement, TODOs
+## Ideas for Improvement, Unsubstantiated Assumptions, Questions, TODOs
 
-TODO
+- Is the relation between rating and scored goals linear at all?
+- Idea: Use more features to describe a national team. 
+  + Higgins et al. (see above) use an "offensive" vs. "defensive" score for each team in their prediction of the 2013/14 English Premier League season outcomes.
+  + Identify each team with its "set of players". Good: Could potentially use a lot more data from national/club league matches. Problem: Is a team really only as strong as the sum of its players? How much influence does the trainer and its staff have?
+- Problem: For international matches there are not many datapoints. E.g. the German national team had only about 10 matches in 2015. How do we prevent overfitting if we have only ~20 data points over 2 years?
+- Problem: The squad changes considerably over time, so results from 2010 are probably not very relevant for predictions in 2016. 
+- Problem: The same applies to individual players. How constant is their "value" over time?
 
 ## Legal Disclaimer
 Copyright 2016, danleh. 
