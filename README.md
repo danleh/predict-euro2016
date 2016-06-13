@@ -9,11 +9,23 @@ This is a crude attempt at predicting the results of individual games of the gro
   + It is continuous, e.g. the result could be 2.732 vs. 1.231 goals. Soccer only allows a natural number of goals, though ;)
   + We not only want the most probable exact goal count, but maybe also the winning probability for each team, the probability for a draw, or the probability for a particular goal difference.
 4. So instead we assume the outcome of the function is really the expected value of goals scored per team. Other sources suggest (see below) that this number is approximately [Poisson-distributed](https://en.wikipedia.org/wiki/Poisson_distribution) for soccer games. Conveniently, the mean of the Poisson distribution is also its only parameter λ. So we set the result of our function as the two parameters of a two dimensional Poisson distribution. (It can simply be obtained by multiplying two 1D Poisson distrubtions since the area under a 1D [probability mass function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) is 1 and their product (the volume under the surface of the 2D Poisson distribution) will thus also be 1, making it a correct PMF.)
-5. Then we can sample this 2D PMF at every possible combination of goals. That is, we can answer (only approximately, of course) "How probable is the exact result of 3:1 in a match between Spain and Italy?". By adding up all probabilites where the number goals for team A is larger than the number of goals for team B, we get the winning probability for team A. Similarly, we can obtain the probability of a draw as the sum of all probabilities where the goal counts are equal.
+5. Then we can sample this 2D PMF at every possible combination of goals. That is, we can answer (only approximately, of course) "How probable is the exact result of 3:1 in a match between Spain and Italy?". By adding up all probabilites where the number goals for team A is larger than the number of goals for team B, we get the winning probability for team A. Similarly, we can obtain the probability of a draw as the sum of all probabilities where the goal counts are equal, etc. pp.
 
 ## Results so far
 
-TODO
+As of 2016-06-13 02:00 CEST:
+
+| Match | Predicted Goals | Actual Goals | Result |
+| --- | --- | --- | --- |
+| FRA:ROU | 2:1 | 2:1 | correct |
+| ALB:CH | 0:1 | 0:1 | correct |
+| WAL:SVK | 1:1 | 2:1 | wrong |
+| ENG:RUS | 1:1 | 1:1 | correct |
+| TUR:KRO | 1:1 | 0:1 | wrong |
+| POL:NIR | 1:1 | 1:0 | wrong |
+| DEU:UKR | 2:1 | 2:0 | wrong goals, correct winner |
+
+First observation: Similarly strong teams result in a draw prediction. This is undesirable, because even though this might be the most probable exact goal result, one would rather like to correctly predict the overall winner of the game, even if the exact goal prediction was wrong. 
 
 ## Similar Projects, Articles, Sources
 
