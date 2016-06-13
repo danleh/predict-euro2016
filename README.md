@@ -1,11 +1,15 @@
 # Predicting the UEFA Euro 2016 Championship Results
-This is a crude attempt at predicting the results of individual games of the group stage of the European soccer championships 2016. 
+This is a crude attempt at predicting the results of individual games of the group stage of the European soccer championships 2016.
 
 ## Basic Idea
 
 1. Obtain some kind of "rating" or "strength factor" for each participating national team. This could be an Elo number (e.g. the [World Football Elo Ratings](https://en.wikipedia.org/wiki/World_Football_Elo_Ratings) from [this website](http://www.eloratings.net/world.html)) or some otherwise comparable number (e.g. the [FIFA/Coca-Cola World Rating](http://www.fifa.com/fifa-world-ranking/ranking-table/men/index.html) for national soccer teams).
-2. Learn from past games of two competing teams how their "Elo number" affects the final score of their game. Formally speaking, we want to learn a function of 2 numbers to 2 other numbers, i.e. a mapping ```f: R^2 -> R^2```. This is a prime candidate for simple machine learning methods.
-3. TODO
+2. Learn from past games of two competing teams how their "Elo number" affects the final score of their game. Formally speaking, we want to learn a function of 2 numbers to 2 other numbers, i.e. a mapping ```f: R^2 -> R^2```. This is a prime candidate for simple machine learning methods. I chose [ordinary least squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) to estimate a _linear function_ from 2D to 2D. (Since a function from 2D to 1D is essentially an equation describing a plane in 3D, our function is a hyperplane in 4D. Because of OLS it has minimal squared distance from the training data points.)
+3. We could already use the result of this function to predict the scored goals. However, there are two problems:
+  + It is continuous, e.g. the result could be 2.732 vs. 1.231 goals. Soccer only allows a natural number of goals, though ;)
+  + We not only want the most probable exact goal count, but maybe also the winning probability for each team, the probability for a draw, or the probability for a particular goal difference.
+4. So instead we assume the outcome of the function is really the expected value of goals scored per team. Other sources suggest (see below) that this number is approximately [Poisson-distributed](https://en.wikipedia.org/wiki/Poisson_distribution) for soccer games. Conveniently, the mean of the Poisson distribution is also its only parameter λ. So we set the result of our function as the two parameters of a two dimensional Poisson distribution. (It can simply be obtained by multiplying two 1D Poisson distrubtions since the area under a 1D [probability mass function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) is 1 and their product (the volume under the surface of the 2D Poisson distribution) will thus also be 1, making it a correct PMF.)
+5. Then we can sample this 2D PMF at every possible combination of goals. That is, we can answer (only approximately, of course) "How probable is the exact result of 3:1 in a match between Spain and Italy?". By adding up all probabilites where the number goals for team A is larger than the number of goals for team B, we get the winning probability for team A. Similarly, we can obtain the probability of a draw as the sum of all probabilities where the goal counts are equal.
 
 ## Results so far
 
@@ -22,7 +26,9 @@ TODO
 
 ## Ideas for Improvement, Unsubstantiated Assumptions, Questions, TODOs
 
+- TODO: Add prediction of knock-out stage results. (E.g. Who will be in the semi finals? Who will be in the final? Who wins the tournament and how probable is this outcome?)
 - Is the relation between rating and scored goals linear at all?
+- Idea: Map input data to some higher-dimensional "feature space" first, then learn linear function in this space. E.g. using the basis functions ```[1, x, x^2]``` we could fit a hyperbole through the data points instead of a (hyper-)plane.
 - Idea: Use more features to describe a national team. 
   + Higgins et al. (see above) use an "offensive" vs. "defensive" score for each team in their prediction of the 2013/14 English Premier League season outcomes.
   + Identify each team with its "set of players". Good: Could potentially use a lot more data from national/club league matches. Problem: Is a team really only as strong as the sum of its players? How much influence does the trainer and his/her staff have?
