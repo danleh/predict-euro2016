@@ -38,6 +38,7 @@ First observation: Similarly strong teams result in a draw prediction. This is u
 
 ## Ideas for Improvement, Unsubstantiated Assumptions, Questions, TODOs
 
+- TODO (!): Do proper (leave one out) cross-validation on the different types of Elo numbers and the learned function (e.g. linear vs polynomial)
 - TODO: Add prediction of knock-out stage results. (E.g. Who will be in the semi finals? Who will be in the final? Who wins the tournament and how probable is this outcome?)
 - Is the relation between rating and scored goals linear at all?
 - Is the 2D distribution of goal results really a 2D Poisson distribution? In particular, would it be possible that draw situations are less probable in reality because both teams switch to a more "aggressive tactic"?
