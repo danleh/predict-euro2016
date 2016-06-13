@@ -40,6 +40,7 @@ First observation: Similarly strong teams result in a draw prediction. This is u
 
 - TODO: Add prediction of knock-out stage results. (E.g. Who will be in the semi finals? Who will be in the final? Who wins the tournament and how probable is this outcome?)
 - Is the relation between rating and scored goals linear at all?
+- Is the 2D distribution of goal results really a 2D Poisson distribution? In particular, would it be possible that draw situations are less probable in reality because both teams switch to a more "aggressive tactic"?
 - Idea: Map input data to some higher-dimensional "feature space" first, then learn linear function in this space. E.g. using the basis functions ```[1, x, x^2]``` we could fit a hyperbole through the data points instead of a (hyper-)plane.
 - Idea: Use more features to describe a national team. 
   + Higgins et al. (see above) use an "offensive" vs. "defensive" score for each team in their prediction of the 2013/14 English Premier League season outcomes.
