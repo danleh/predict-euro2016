@@ -1,5 +1,5 @@
 # Predicting the UEFA Euro 2016 Championship Results
-This is a crude attempt at predicting the results of individual games of the group stage of the European soccer championships 2016.
+This is a crude attempt at predicting the results of individual games of the group stage of the European soccer championships 2016 with MATLAB.
 
 ## Basic Idea
 
@@ -26,6 +26,15 @@ As of 2016-06-13 02:00 CEST:
 | DEU:UKR | 2:1 | 2:0 | wrong goals, correct winner |
 
 First observation: Similarly strong teams result in a draw prediction. This is undesirable, because even though this might be the most probable exact goal result, one would rather like to correctly predict the overall winner of the game, even if the exact goal prediction was wrong. 
+
+## Example Plots for France vs. Romania
+
+![Probability distribution for the possible goal combinations](https://raw.githubusercontent.com/danleh/predict-euro2016/master/plots/exact-result-pmf.png)
+
+![Probability distribution for the possible goal differences](https://raw.githubusercontent.com/danleh/predict-euro2016/master/plots/goal-difference-pmf.png)
+
+The best bet does not necessarily have to be the most probable outcome, for example, because if you bet on the correct winner you still get some points, even though the result (goal count) is not exact.
+![Expected value for possible goal combination bets](https://raw.githubusercontent.com/danleh/predict-euro2016/master/plots/betting-expected-value.png)
 
 ## Similar Projects, Articles, Sources
 
