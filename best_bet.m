@@ -44,7 +44,9 @@ function best_bet_goals = best_bet( teamA, teamB )
         zdata = handle(k).ZData;
         handle(k).CData = zdata;
         handle(k).FaceColor = 'interp';
+        handle(k).FaceAlpha = .5;
     end
+    set(gcf,'renderer','painters');
     % proper captions
     title('Exptected Value of Bet on Goals');
     xlabel(['Goals for ' capital(teamA)]);

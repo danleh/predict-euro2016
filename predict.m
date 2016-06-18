@@ -66,8 +66,11 @@ function [most_probable_goals, ...
     for k = 1:length(handle)
         zdata = handle(k).ZData;
         handle(k).CData = zdata;
+%         handle(k).CDataMode = 'auto';
         handle(k).FaceColor = 'interp';
+        handle(k).FaceAlpha = .5;
     end
+    set(gcf,'renderer','painters');
     % proper captions
     title('PMF of Exact Goal Result');
     xlabel(['Goals for ' capital(teamA)]);
