@@ -27,7 +27,7 @@ As of 2016-06-13 02:00 CEST:
 
 First observation: Similarly strong teams result in a draw prediction. This is undesirable, because even though this might be the most probable exact goal result, one would rather like to correctly predict the overall winner of the game, even if the exact goal prediction was wrong. 
 
-## Example Plots for France vs. Romania
+## Example Plots for France vs. Albania
 
 ![Probability distribution for the possible goal combinations](https://raw.githubusercontent.com/danleh/predict-euro2016/master/plots/exact-result-pmf.png)
 
